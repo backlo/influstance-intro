@@ -17,13 +17,19 @@
 
 ## 배포
 
-빌드가 필요 없는 정적 파일입니다. 파일이 저장소 루트에 있습니다.
+**공개 주소: https://influstance.vercel.app/**
 
-**Vercel에서 가져올 때**
+Vercel(무료)에 올라가 있고, `main`에 push하면 자동으로 다시 배포됩니다.
+빌드가 필요 없는 정적 파일이며 파일은 저장소 루트에 있습니다.
+
+Vercel에서 가져올 때 설정:
 - Framework Preset: **Other**
 - Build Command: 비워 둠
 - Output Directory: 비워 둠(루트)
-- `vercel.json`이 나머지를 처리합니다.
+- `vercel.json`이 나머지(주소 정리·보안 헤더)를 처리합니다.
+
+주소를 옮길 때는 `index.html`의 `canonical`과 `og:image` 두 줄도 함께 바꿔야 합니다.
+공유 미리보기가 이 두 값을 씁니다.
 
 ## 로컬에서 보기
 
