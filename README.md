@@ -13,6 +13,17 @@
 | `hero-cards.png`, `hero-cards@2x.png` | 첫 화면 이미지 |
 | `og-default.png` | 공유 미리보기 이미지 |
 | `.nojekyll` | GitHub Pages가 파일을 그대로 내보내게 함 |
+| `vercel.json` | Vercel 배포 설정(빌드 없음, 보안 헤더) |
+
+## 배포
+
+빌드가 필요 없는 정적 파일입니다. 파일이 저장소 루트에 있습니다.
+
+**Vercel에서 가져올 때**
+- Framework Preset: **Other**
+- Build Command: 비워 둠
+- Output Directory: 비워 둠(루트)
+- `vercel.json`이 나머지를 처리합니다.
 
 ## 로컬에서 보기
 
