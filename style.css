@@ -1,0 +1,347 @@
+/* InfluStance 소개 페이지 — 외부 라이브러리 없음 */
+:root {
+  --paper: #fffdf9;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  font-family: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  color: var(--paper);
+  /* 한글은 단어 중간에서 꺾이면 읽기 어렵다 */
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+a {
+  color: inherit;
+}
+
+/* 가로 3칸 스냅 슬라이더. 자바스크립트가 없어도 스크롤로 넘어간다 */
+.track {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  height: 100dvh;
+}
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.slide {
+  flex: 0 0 100vw;
+  scroll-snap-align: start;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 120px;
+  background: var(--bg);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.logo {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.links {
+  display: flex;
+  gap: 16px;
+}
+.links a {
+  color: var(--sub);
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.desktop-only {
+  display: none;
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+}
+.text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  display: flex;
+  flex-direction: column;
+}
+.title.small {
+  font-size: 30px;
+}
+.sub {
+  margin: 16px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--sub);
+  max-width: 560px;
+}
+
+.actions {
+  margin: 28px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 420px;
+  min-height: 52px;
+  padding: 0 24px;
+  border-radius: 10px;
+  background: var(--paper);
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.small {
+  font-size: 15px;
+  text-decoration: underline;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.aside {
+  display: none;
+}
+
+/* 예시 사람 카드 */
+.card {
+  background: var(--paper);
+  color: #1b1d21;
+  border-radius: 14px;
+  padding: 18px;
+  max-width: 420px;
+  width: 100%;
+}
+.card p {
+  margin: 0;
+}
+.card-tag {
+  font-size: 12px;
+  color: #616770;
+  border: 1px solid #e6e2d8;
+  border-radius: 4px;
+  padding: 1px 6px;
+  display: inline-block;
+}
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+.card-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background: #f4f1ea;
+  color: #616770;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  flex: 0 0 auto;
+}
+.card-name {
+  display: block;
+  font-size: 19px;
+  font-weight: 600;
+}
+.card-meta {
+  display: block;
+  font-size: 13px;
+  color: #616770;
+}
+.card-chip {
+  margin-top: 12px !important;
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 10px;
+  border-radius: 6px;
+  background: #f8ecd9;
+  color: #8f5410;
+  font-size: 14px;
+  font-weight: 600;
+}
+.card-quote {
+  margin-top: 12px !important;
+  font-size: 17px;
+  line-height: 1.5;
+}
+.card-change,
+.card-foot {
+  margin-top: 8px !important;
+  font-size: 13px;
+  color: #616770;
+}
+
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  height: 180px;
+}
+.bars span {
+  width: 40px;
+  border-radius: 4px;
+  background: var(--sub);
+  opacity: 0.55;
+}
+.bars span:nth-child(1) {
+  height: 60%;
+}
+.bars span:nth-child(2) {
+  height: 100%;
+}
+.bars span:nth-child(3) {
+  height: 40%;
+}
+.quote {
+  font-size: 260px;
+  line-height: 0.8;
+  opacity: 0.18;
+}
+
+/* 하단 조작부 */
+.nav {
+  position: fixed;
+  inset: auto 0 0 0;
+  padding: 16px 20px calc(16px + env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  pointer-events: none;
+  color: var(--paper);
+}
+.nav > * {
+  pointer-events: auto;
+}
+.arrows {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.arrows button {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+.arrows button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.count {
+  font-size: 13px;
+  opacity: 0.8;
+}
+.dots {
+  display: flex;
+  gap: 6px;
+}
+.dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.4;
+}
+.dots span.on {
+  width: 22px;
+  opacity: 1;
+}
+.foot {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.8;
+  display: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: 2px;
+}
+
+@media (min-width: 1024px) {
+  .slide {
+    padding: 28px 40px 130px;
+  }
+  .desktop-only {
+    display: inline-flex;
+  }
+  .aside {
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: center;
+  }
+  .title {
+    font-size: 64px;
+  }
+  .title.small {
+    font-size: 48px;
+  }
+  .sub {
+    font-size: 20px;
+  }
+  .cta {
+    min-height: 56px;
+    width: auto;
+  }
+  .actions {
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+  .dots {
+    display: none;
+  }
+  .foot {
+    display: block;
+  }
+}
