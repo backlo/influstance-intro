@@ -1,95 +1,91 @@
-/* InfluStance 소개 페이지 — 외부 라이브러리 없음 */
+/* InfluStance 소개 페이지 v2 — 세로 스크롤 한 페이지. 외부 라이브러리 없음 */
 :root {
   --paper: #fffdf9;
+  --ink: #1b1d21;
+  --muted: #616770;
+  --tint: #f4f1ea;
+  --green: #2f5a25;
+  --green-sub: #cfe3c6;
+  --warn: #e2ac55;
 }
 * {
   box-sizing: border-box;
 }
-html,
 body {
   margin: 0;
-  height: 100%;
-  overflow: hidden;
-}
-body {
+  background: var(--paper);
+  color: var(--ink);
   font-family: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
-  color: var(--paper);
-  /* 한글은 단어 중간에서 꺾이면 읽기 어렵다 */
+  /* 한글이 단어 중간에서 꺾이지 않게. 긴 주소는 넘치지 않게 anywhere로 받는다 */
   word-break: keep-all;
   overflow-wrap: anywhere;
+  -webkit-text-size-adjust: 100%;
 }
-a {
-  color: inherit;
+img {
+  max-width: 100%;
+  height: auto;
 }
-
-/* 가로 3칸 스냅 슬라이더. 자바스크립트가 없어도 스크롤로 넘어간다 */
-.track {
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  height: 100dvh;
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
-.track::-webkit-scrollbar {
-  display: none;
-}
-
-.slide {
-  flex: 0 0 100vw;
-  scroll-snap-align: start;
-  height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  padding: 20px 20px 120px;
-  background: var(--bg);
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.narrow {
+  max-width: 760px;
+}
+
+/* 0. 머리글 */
 .head {
+  background: var(--green);
+  color: var(--paper);
+}
+.head-inner {
+  height: 56px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  align-items: baseline;
+  gap: 8px;
 }
 .logo {
   font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.02em;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
 }
-.links {
-  display: flex;
-  gap: 16px;
-}
-.links a {
-  color: var(--sub);
-  font-size: 14px;
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-}
-.desktop-only {
-  display: none;
+.logo-ko {
+  font-size: 13px;
+  color: var(--green-sub);
 }
 
-.body {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  max-width: 1120px;
-  width: 100%;
-  margin: 0 auto;
+/* 1·5. 짙은 초록 절 */
+.hero {
+  background: var(--green);
+  color: var(--paper);
+  padding: 32px 0 48px;
 }
-.text {
-  flex: 1 1 auto;
+.hero-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.hero-text {
   min-width: 0;
 }
-
-.title {
+.hero-title {
   margin: 0;
   font-size: 40px;
   font-weight: 600;
@@ -98,250 +94,261 @@ a {
   display: flex;
   flex-direction: column;
 }
-.title.small {
-  font-size: 30px;
-}
-.sub {
+.hero-sub {
   margin: 16px 0 0;
   font-size: 16px;
   line-height: 1.6;
-  color: var(--sub);
+  color: var(--green-sub);
   max-width: 560px;
 }
+.closing-title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+.hero-img {
+  display: flex;
+  justify-content: center;
+}
+.hero-img img {
+  width: 350px;
+}
 
-.actions {
-  margin: 28px 0 0;
+/* 이메일 폼 */
+.signup {
+  margin-top: 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  align-items: flex-start;
+  gap: 10px;
+  max-width: 520px;
 }
-.cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 420px;
-  min-height: 52px;
-  padding: 0 24px;
+.signup input {
+  height: 52px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid var(--green-sub);
+  background: rgba(255, 253, 249, 0.12);
+  color: var(--paper);
+  font: inherit;
+  font-size: 16px;
+}
+.signup input::placeholder {
+  color: var(--green-sub);
+}
+.signup input[aria-invalid="true"] {
+  border-color: var(--warn);
+}
+.signup button {
+  height: 52px;
+  border: 0;
   border-radius: 10px;
   background: var(--paper);
+  color: var(--green);
+  font: inherit;
   font-size: 17px;
   font-weight: 600;
-  text-decoration: none;
+  cursor: pointer;
 }
-.small {
+.signup-note {
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: var(--green-sub);
+  max-width: 520px;
+}
+.signup-note a {
+  color: var(--green-sub);
+}
+.signup-error {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: var(--warn);
+}
+
+/* 전송 뒤 감사 상태 — 폼과 같은 자리, 같은 높이 */
+.signup-done {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  max-width: 520px;
+  padding: 0 14px;
+  border-radius: 10px;
+  background: rgba(255, 253, 249, 0.12);
+  font-size: 16px;
+}
+
+/* 2·4·6. 밝은 절 */
+.plain {
+  background: var(--paper);
+  padding: 56px 0;
+}
+.tint {
+  background: var(--tint);
+  padding: 56px 0;
+}
+.plain h2,
+.tint h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+.small-head {
+  font-size: 22px !important;
+}
+.lead {
+  margin: 16px 0 0;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.cols {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 24px;
+}
+.cols li {
+  border-top: 2px solid var(--ink);
+  padding-top: 12px;
+}
+.cols h3 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 600;
+}
+.cols p {
+  margin: 6px 0 0;
   font-size: 15px;
-  text-decoration: underline;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.rules {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+}
+.rules li {
+  display: flex;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid #e6e2d8;
+  font-size: 15px;
+  line-height: 1.55;
+}
+.rules li:first-child {
+  border-top: 1px solid #e6e2d8;
+}
+.num {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  color: var(--muted);
+  flex: 0 0 auto;
+}
+
+.privacy {
+  margin: 20px 0 0;
+}
+.privacy div {
+  display: flex;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #e6e2d8;
+  font-size: 15px;
+}
+.privacy dt {
+  flex: 0 0 96px;
+  color: var(--muted);
+}
+.privacy dd {
+  margin: 0;
+}
+
+/* 7. 바닥글 */
+.foot {
+  background: var(--paper);
+  padding: 32px 0 48px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.foot a {
+  color: var(--muted);
   display: inline-flex;
   align-items: center;
   min-height: 44px;
 }
 
-.aside {
-  display: none;
-}
-
-/* 예시 사람 카드 */
-.card {
-  background: var(--paper);
-  color: #1b1d21;
-  border-radius: 14px;
-  padding: 18px;
-  max-width: 420px;
-  width: 100%;
-}
-.card p {
-  margin: 0;
-}
-.card-tag {
-  font-size: 12px;
-  color: #616770;
-  border: 1px solid #e6e2d8;
-  border-radius: 4px;
-  padding: 1px 6px;
-  display: inline-block;
-}
-.card-head {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 12px;
-}
-.card-avatar {
-  width: 52px;
-  height: 52px;
-  border-radius: 999px;
-  background: #f4f1ea;
-  color: #616770;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: 600;
-  flex: 0 0 auto;
-}
-.card-name {
-  display: block;
-  font-size: 19px;
-  font-weight: 600;
-}
-.card-meta {
-  display: block;
-  font-size: 13px;
-  color: #616770;
-}
-.card-chip {
-  margin-top: 12px !important;
-  display: inline-flex;
-  align-items: center;
-  min-height: 36px;
-  padding: 0 10px;
-  border-radius: 6px;
-  background: #f8ecd9;
-  color: #8f5410;
-  font-size: 14px;
-  font-weight: 600;
-}
-.card-quote {
-  margin-top: 12px !important;
-  font-size: 17px;
-  line-height: 1.5;
-}
-.card-change,
-.card-foot {
-  margin-top: 8px !important;
-  font-size: 13px;
-  color: #616770;
-}
-
-.bars {
-  display: flex;
-  align-items: flex-end;
-  gap: 10px;
-  height: 180px;
-}
-.bars span {
-  width: 40px;
-  border-radius: 4px;
-  background: var(--sub);
-  opacity: 0.55;
-}
-.bars span:nth-child(1) {
-  height: 60%;
-}
-.bars span:nth-child(2) {
-  height: 100%;
-}
-.bars span:nth-child(3) {
-  height: 40%;
-}
-.quote {
-  font-size: 260px;
-  line-height: 0.8;
-  opacity: 0.18;
-}
-
-/* 하단 조작부 */
-.nav {
-  position: fixed;
-  inset: auto 0 0 0;
-  padding: 16px 20px calc(16px + env(safe-area-inset-bottom));
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  pointer-events: none;
-  color: var(--paper);
-}
-.nav > * {
-  pointer-events: auto;
-}
-.arrows {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.arrows button {
-  width: 48px;
-  height: 48px;
-  border-radius: 999px;
-  border: 1px solid currentColor;
-  background: transparent;
-  color: inherit;
-  font-size: 22px;
-  line-height: 1;
-  cursor: pointer;
-}
-.arrows button:disabled {
-  opacity: 0.35;
-  cursor: default;
-}
-.count {
-  font-size: 13px;
-  opacity: 0.8;
-}
-.dots {
-  display: flex;
-  gap: 6px;
-}
-.dots span {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: currentColor;
-  opacity: 0.4;
-}
-.dots span.on {
-  width: 22px;
-  opacity: 1;
-}
-.foot {
-  margin: 0;
-  font-size: 13px;
-  opacity: 0.8;
-  display: none;
-}
-
-:focus-visible {
-  outline: 2px solid var(--paper);
-  outline-offset: 2px;
-}
-
 @media (min-width: 1024px) {
-  .slide {
-    padding: 28px 40px 130px;
+  .head-inner {
+    height: 72px;
   }
-  .desktop-only {
-    display: inline-flex;
+  .hero {
+    padding: 48px 0 96px;
   }
-  .aside {
-    display: flex;
-    flex: 0 0 auto;
-    justify-content: center;
-  }
-  .title {
-    font-size: 64px;
-  }
-  .title.small {
-    font-size: 48px;
-  }
-  .sub {
-    font-size: 20px;
-  }
-  .cta {
-    min-height: 56px;
-    width: auto;
-  }
-  .actions {
+  .hero-inner {
     flex-direction: row;
     align-items: center;
-    gap: 20px;
+    gap: 56px;
   }
-  .dots {
-    display: none;
+  .hero-text {
+    flex: 6 1 0;
   }
-  .foot {
-    display: block;
+  .hero-img {
+    flex: 5 1 0;
+  }
+  .hero-img img {
+    width: 440px;
+  }
+  .hero-title {
+    font-size: 64px;
+  }
+  .hero-sub {
+    font-size: 20px;
+  }
+  .closing-title {
+    font-size: 40px;
+  }
+  .plain,
+  .tint {
+    padding: 96px 0;
+  }
+  .plain h2,
+  .tint h2 {
+    font-size: 40px;
+  }
+  .small-head {
+    font-size: 28px !important;
+  }
+  .lead {
+    font-size: 20px;
+  }
+  .cols {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  .cols h3 {
+    font-size: 22px;
+  }
+  .cols p {
+    font-size: 16px;
+  }
+  .rules li {
+    font-size: 18px;
+  }
+  .signup {
+    flex-direction: row;
+  }
+  .signup input {
+    flex: 1;
+  }
+  .signup button {
+    flex: 0 0 auto;
+    padding: 0 24px;
   }
 }
