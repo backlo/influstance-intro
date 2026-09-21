@@ -1,21 +1,57 @@
-/* InfluStance 소개 페이지 v2 — 세로 스크롤 한 페이지. 외부 라이브러리 없음 */
+/* Full style.css replacement. Actual deployed HTML selectors verified. No external imports.
+   hero-cards PNG pixels cannot be recolored by CSS; replace assets separately. */
 :root {
-  --paper: #fffdf9;
-  --ink: #1b1d21;
-  --muted: #616770;
-  --tint: #f4f1ea;
-  --green: #2f5a25;
-  --green-sub: #cfe3c6;
-  --warn: #e2ac55;
+ color-scheme:light;
+ --bg: #ffffff;
+ --surface: #ffffff;
+ --surface-2: #f4f6fa;
+ --fg: #0f1b33;
+ --muted: #55617a;
+ --border: #ccd4df;
+ --border-strong: #146be0;
+ --accent: #146be0;
+ --accent-bg: #f0f6ff;
+ --bull: #c93645;
+ --bull-bg: #fff0f2;
+ --neutral: #58616e;
+ --neutral-bg: #f0f2f5;
+ --bear: #3558a8;
+ --bear-bg: #eef3ff;
+ --warn-bg: #fff6dc;
+ --warn-fg: #6b4d00;
+ --on-accent: #ffffff;
+ --card-shadow:0 8px 26px rgba(20,107,224,.07);
+}
+html[data-theme="dark"] {
+ color-scheme:dark;
+ --bg: #0f1b33;
+ --surface: #172740;
+ --surface-2: #20334a;
+ --fg: #ecedef;
+ --muted: #a3aab4;
+ --border: #40516a;
+ --border-strong: #81baff;
+ --accent: #81baff;
+ --accent-bg: #20334a;
+ --bull: #ff9da8;
+ --bull-bg: #41232d;
+ --neutral: #b9c2cf;
+ --neutral-bg: #293342;
+ --bear: #a3bfff;
+ --bear-bg: #20314e;
+ --warn-bg: #33290f;
+ --warn-fg: #f0d98a;
+ --on-accent: #0f1b33;
+ --card-shadow:0 8px 26px rgba(0,0,0,.18);
 }
 * {
   box-sizing: border-box;
 }
 body {
   margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   /* 한글이 단어 중간에서 꺾이지 않게. 긴 주소는 넘치지 않게 anywhere로 받는다 */
   word-break: keep-all;
   overflow-wrap: anywhere;
@@ -52,8 +88,8 @@ img {
 
 /* 0. 머리글 */
 .head {
-  background: var(--green);
-  color: var(--paper);
+  background: var(--accent);
+  color: var(--bg);
 }
 .head-inner {
   height: 56px;
@@ -68,13 +104,13 @@ img {
 }
 .logo-ko {
   font-size: 13px;
-  color: var(--green-sub);
+  color: var(--muted);
 }
 
 /* 1·5. 짙은 초록 절 */
 .hero {
-  background: var(--green);
-  color: var(--paper);
+  background: var(--accent);
+  color: var(--bg);
   padding: 32px 0 48px;
 }
 .hero-inner {
@@ -98,7 +134,7 @@ img {
   margin: 16px 0 0;
   font-size: 16px;
   line-height: 1.6;
-  color: var(--green-sub);
+  color: var(--muted);
   max-width: 560px;
 }
 .closing-title {
@@ -128,24 +164,24 @@ img {
   height: 52px;
   padding: 0 14px;
   border-radius: 10px;
-  border: 1px solid var(--green-sub);
-  background: rgba(255, 253, 249, 0.12);
-  color: var(--paper);
+  border: 1px solid var(--muted);
+  background: var(--surface-2);
+  color: var(--bg);
   font: inherit;
   font-size: 16px;
 }
 .signup input::placeholder {
-  color: var(--green-sub);
+  color: var(--muted);
 }
 .signup input[aria-invalid="true"] {
-  border-color: var(--warn);
+  border-color: var(--warn-fg);
 }
 .signup button {
   height: 52px;
   border: 0;
   border-radius: 10px;
-  background: var(--paper);
-  color: var(--green);
+  background: var(--bg);
+  color: var(--accent);
   font: inherit;
   font-size: 17px;
   font-weight: 600;
@@ -154,16 +190,16 @@ img {
 .signup-note {
   margin: 10px 0 0;
   font-size: 13px;
-  color: var(--green-sub);
+  color: var(--muted);
   max-width: 520px;
 }
 .signup-note a {
-  color: var(--green-sub);
+  color: var(--muted);
 }
 .signup-error {
   margin: 8px 0 0;
   font-size: 13px;
-  color: var(--warn);
+  color: var(--warn-fg);
 }
 
 /* 전송 뒤 감사 상태 — 폼과 같은 자리, 같은 높이 */
@@ -176,17 +212,17 @@ img {
   max-width: 520px;
   padding: 0 14px;
   border-radius: 10px;
-  background: rgba(255, 253, 249, 0.12);
+  background: var(--surface-2);
   font-size: 16px;
 }
 
 /* 2·4·6. 밝은 절 */
 .plain {
-  background: var(--paper);
+  background: var(--bg);
   padding: 56px 0;
 }
 .tint {
-  background: var(--tint);
+  background: var(--surface-2);
   padding: 56px 0;
 }
 .plain h2,
@@ -215,7 +251,7 @@ img {
   gap: 24px;
 }
 .cols li {
-  border-top: 2px solid var(--ink);
+  border-top: 2px solid var(--fg);
   padding-top: 12px;
 }
 .cols h3 {
@@ -239,15 +275,15 @@ img {
   display: flex;
   gap: 12px;
   padding: 14px 0;
-  border-bottom: 1px solid #e6e2d8;
+  border-bottom: 1px solid var(--border);
   font-size: 15px;
   line-height: 1.55;
 }
 .rules li:first-child {
-  border-top: 1px solid #e6e2d8;
+  border-top: 1px solid var(--border);
 }
 .num {
-  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-family: ui-monospace, monospace;
   color: var(--muted);
   flex: 0 0 auto;
 }
@@ -259,7 +295,7 @@ img {
   display: flex;
   gap: 12px;
   padding: 8px 0;
-  border-bottom: 1px solid #e6e2d8;
+  border-bottom: 1px solid var(--border);
   font-size: 15px;
 }
 .privacy dt {
@@ -272,7 +308,7 @@ img {
 
 /* 7. 바닥글 */
 .foot {
-  background: var(--paper);
+  background: var(--bg);
   padding: 32px 0 48px;
   font-size: 13px;
   color: var(--muted);
@@ -352,3 +388,64 @@ img {
     padding: 0 24px;
   }
 }
+
+/* Blue-light composition overrides; part of this complete replacement file. */
+[hidden] { display:none !important; }
+html { scroll-padding-top:24px; }
+body { line-height:1.6; }
+a { color:var(--accent); text-underline-offset:4px; }
+:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+.head, .hero, .closing { background:var(--bg); color:var(--fg); }
+.head-inner { align-items:center; flex-wrap:wrap; min-height:64px; height:auto; padding-top:14px; padding-bottom:14px; }
+.logo { color:var(--accent); font-size:24px; }
+.logo-ko { color:var(--muted); }
+.hero { border-bottom:2px solid var(--border-strong); }
+.hero-title { font-size:44px; line-height:1.08; letter-spacing:-.035em; color:var(--accent); }
+.hero:not(.closing) .hero-title::before { content:none; }
+.hero-sub { color:var(--muted); }
+.closing-title, .plain h2, .tint h2, .cols h3 { color:var(--accent); }
+.closing { border-top:1px solid var(--border); }
+.hero-img { min-width:0; }
+.hero-img img { background:var(--surface); border:1px solid var(--border); border-radius:12px; box-shadow:var(--card-shadow); object-fit:contain; }
+.signup input { min-width:0; min-height:52px; color:var(--fg); background:var(--surface-2); border:1px solid var(--muted); }
+.signup input::placeholder { color:var(--muted); opacity:1; }
+.signup button { min-width:44px; min-height:52px; background:var(--accent); color:var(--on-accent); }
+.signup button:focus-visible { outline-color:var(--accent); }
+.signup button:disabled { cursor:wait; }
+.signup-note { color:var(--muted); line-height:1.6; }
+.signup-note a { display:inline-flex; align-items:center; min-height:44px; color:var(--accent); }
+.signup-error { color:var(--warn-fg); background:var(--warn-bg); padding:8px 12px; border:1px solid var(--warn-fg); border-radius:6px; }
+.signup-done { color:var(--fg); background:var(--accent-bg); border:1px solid var(--border); padding:12px 14px; }
+.cols li { border-color:var(--border-strong); }
+.num { font-variant-numeric:tabular-nums; }
+.privacy dd { min-width:0; }
+.foot a { color:var(--accent); }
+@media (min-width:600px) {
+ .signup { flex-direction:row; }
+ .signup input { flex:1 1 0; }
+ .signup button { flex:0 0 auto; padding:0 24px; }
+}
+@media (min-width:1024px) {
+ .wrap { max-width:1240px; padding-left:32px; padding-right:32px; }
+ .narrow { max-width:800px; }
+ .hero-inner { gap:64px; }
+ .hero-title { font-size:72px; }
+ .hero-text { flex:6 1 0; }
+ .hero-img { flex:5 1 0; }
+ .hero-img img { width:100%; max-width:480px; }
+}
+@media (max-width:359px) {
+ .wrap { padding-left:16px; padding-right:16px; }
+ .privacy div { flex-direction:column; gap:4px; }
+ .privacy dt { flex-basis:auto; }
+}
+
+/* Brand blue is structural; ordinary source/privacy links retain a neutral underline. */
+a, .signup-note a, .foot a { color:var(--fg); text-decoration:underline; text-underline-offset:4px; }
+/* Semantic badge hooks for HTML cards, if existing PNG assets are replaced separately.
+   CSS cannot recolor text or badges inside hero-cards.png. No elements are added here. */
+.stance { display:inline-flex; align-items:center; gap:6px; padding:5px 10px; border-radius:6px; font-size:14px; font-weight:600; }
+.stance.bull { color:var(--bull); background:var(--bull-bg); }
+.stance.neutral, .stance.neu { color:var(--neutral); background:var(--neutral-bg); }
+.stance.bear { color:var(--bear); background:var(--bear-bg); }
+.stance-note { color:var(--muted); font-size:13px; line-height:1.5; }
