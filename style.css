@@ -469,3 +469,10 @@ a, .signup-note a, .foot a { color:var(--fg); text-decoration:underline; text-un
  .gallery-item { flex-basis:calc((100% - 16px) / 1.2); }
 }
 @media (prefers-reduced-motion:reduce) { .gallery { scroll-behavior:auto; scroll-snap-type:none; } }
+
+/* 머리글 로고 — 딥블루 배경이라 반전판을 쓴다 */
+.logo-img {
+  height: 28px;
+  width: auto;
+  display: block;
+}
